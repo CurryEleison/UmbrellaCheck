@@ -21,19 +21,28 @@ public partial class UmbrellaCallback : System.Web.UI.Page
 
         if (float.IsNaN(lat) || float.IsNaN(lon))
         {
+            Response.Write("one");
             // Oh well. Let's do a geoip lookup and see if that works
             string ip = string.IsNullOrWhiteSpace(Request["ip"]) ? Request.UserHostAddress : Request["ip"];
+            Response.Write(ip);
             if (ip == "::1")
                 ip = "87.72.246.106";
+            Response.Write(ip);
             WebClient ipwc = new WebClient();
+            Response.Write("two");
             string locurl = String.Format("http://api.hostip.info/get_html.php?ip={0}&position=true", ip);
+            Response.Write(locurl);
             string locinfo = ipwc.DownloadString(locurl);
+            Response.Write(locinfo);
             Regex reglat = new Regex(@"(Latitude\: )([0-9\.-]+)");
             Regex reglon = new Regex(@"(Longitude\: )([0-9\.-]+)");
+            Response.Write("three");
             string slat = reglat.Match(locinfo).Groups[2].Value;
             string slon = reglon.Match(locinfo).Groups[2].Value;
+            Response.Write(slat.ToString());
             lat = float.Parse(slat);
             lon = float.Parse(slon);
+            Response.Write(lat);
         }
 
         // Now that we have lat and lon it's time to figure out the weather
