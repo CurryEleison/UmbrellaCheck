@@ -25,12 +25,10 @@ public partial class UmbrellaCallback : System.Web.UI.Page
             // Oh well. Let's do a geoip lookup and see if that works
             string ip = string.IsNullOrWhiteSpace(Request["ip"]) ? Request.UserHostAddress : Request["ip"];
             // This is because AppHarbor doesn't give me the ip address
-            // if (ip != null && ip.StartsWith("10.") && !string.IsNullOrWhiteSpace(Request.ServerVariables["X-Forwarded-For"]))
-            ip = Request.ServerVariables["X-Forwarded-For"];
+            if (ip != null && ip.StartsWith("10.") && !string.IsNullOrWhiteSpace(Request.Headers["X-Forwarded-For"]))
+                ip = Request.Headers["X-Forwarded-For"];
             if (ip == "::1")
                 ip = "87.72.246.106";
-            Response.Write(ip);
-            Response.Flush();
             WebClient ipwc = new WebClient();
             string locurl = String.Format("http://api.hostip.info/get_html.php?ip={0}&position=true", ip);
             string locinfo = ipwc.DownloadString(locurl);
