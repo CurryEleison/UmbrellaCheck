@@ -142,12 +142,26 @@ a:hover { color: #036; }
 
 
 
+header 
+{
+    font-size: 16pt;
+    text-align: center;
+    color: #aaa;
+    margin-top: 2em;
+}
 #res 
 {
     color: #555;
     position:absolute; top:0; bottom:0; left:0; right:0;
-			margin:auto; height:240px; width:2em;
+			margin:auto; height:2.5em; width:3em;
 			font-size: 72pt;
+			border: 5px solid #888;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 2.5em;
+			border-radius: 0.75em;
+			background-color: #eee;
+			
 	
     
 }

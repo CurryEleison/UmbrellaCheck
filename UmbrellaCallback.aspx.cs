@@ -22,7 +22,7 @@ public partial class UmbrellaCallback : System.Web.UI.Page
 
         if (float.IsNaN(lat) || float.IsNaN(lon))
         {
-            // Oh well. Let's do a geoip lookup and see if that works
+            // Oh well -- no location available. Let's do a geoip lookup and see if that works
             string ip = string.IsNullOrWhiteSpace(Request["ip"]) ? Request.UserHostAddress : Request["ip"];
             // This is because AppHarbor doesn't give me the ip address
             if (ip != null && ip.StartsWith("10.") && !string.IsNullOrWhiteSpace(Request.Headers["X-Forwarded-For"]))
@@ -94,6 +94,6 @@ public partial class UmbrellaCallback : System.Web.UI.Page
         }
 
         //Good. OUt it goes
-        litOutput.Text = String.Format("{{\"main\": \"{3}\", \"sub\": \"Its going to be that bad.\", \"conditions\": \"{2}\", \"url\": \"{0}\"}}", weatherurl, weatherxml, conditions, output);
+        litOutput.Text = String.Format("{{\"main\": \"{3}\", \"quip\": \"Its going to be that bad.\", \"conditions\": \"{2}\", \"url\": \"{0}\"}}", weatherurl, weatherxml, conditions, output);
     }
 }
