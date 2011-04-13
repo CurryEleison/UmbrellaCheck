@@ -44,15 +44,11 @@
 
     <script>
         function writeout(data) {
-             // data = { main: 'Yes', sub: 'Its going to be that bad.', conditions: 'Chance of Rain', url: 'http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=55.6667,12.5667' }
-            // alert(data["main"]);
-            $("#res").text(data["main"]);  //data['main'];
+            $("#res").text(data["main"]);  
         }
 
         function success(position) {
             var url = "UmbrellaCallback.aspx?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude;
-
-
             $.ajax({
                 url: url,
                 dataType: 'json',
@@ -62,6 +58,7 @@
         }
 
         function error(msg) {
+
             $.getJSON("UmbrellaCallback.aspx", writeout);
         }
         $(document).ready(function () {
