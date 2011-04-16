@@ -1,0 +1,14 @@
+This is a demo project to check today's weather conditions at
+your location.
+
+Location is discovered through html5 geolocation falling back 
+to geoip if the user does not want to disclose location.
+
+Weather is provided by weatherunderground API.
+
+If there's a chance of rain a Yes will be displayed on screen. 
+If weather promises to be clear a No.
+
+The project is just a demo, but if anyone really cares about it
+it is easily exapnded into something robust.
+
